@@ -1,6 +1,5 @@
-require "NBA/players/CLI/version"
+require "players/CLI/version"
 
-module NBA
   module Players
     module CLI
       class Error < StandardError; end
