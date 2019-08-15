@@ -13,7 +13,7 @@ class Players::CLI
   end 
 
   def list_players 
-    @player = Players::Player.scrape_nba
+  #  @player = Players::Scraper.scrape_nba
     doc = Nokogiri::HTML(open("https://www.espn.com/nba/stats/player/_/table/offensive/sort/avgPoints/dir/desc"))
     @names = doc.search("td.Table2__td a").collect(&:text)[0..49]
     @names.each.with_index(1) do |player, index|
@@ -21,13 +21,8 @@ class Players::CLI
     end 
    end
 
-  def stats
-    input = nil
-    while input != "exit"
-       puts "Welcome to todays Top 50 NBA players. For more stats type the player number, type list to return or type exit:"
-       input = gets.strip.downcase
-        the_player = Players::Player.scrape_nba[input.to_i-1]
-        puts <<~HEREDOC
+   def print_player(the_player)
+    puts <<~HEREDOC
           Player: #{the_player.name} 
           Position: #{the_player.position} 
           Team: #{the_player.team}
@@ -43,15 +38,32 @@ class Players::CLI
           PlayerUrl: #{the_player.url}
           This is #{the_player.name}'s info card 
           HEREDOC
-            if input.to_i > 0 && input.to_i < 51
-                    elsif input == "list"
-                      list_players
-                     elsif input == "exit"
-                        goodbye
-                    else 
-                     puts "invalid command, type list or exit."
-            end  
-        end 
+   end
+
+  def stats
+    input = nil
+    while input != "exit"
+       puts "Welcome to todays Top 50 NBA players. For more stats type the player number, type list to return or type exit:"
+       input = gets.strip.downcase
+       if input.to_i > 0 && input.to_i < 51
+        the_player = Players::Scraper.scrape_nba[input.to_i-1]
+        print_player(the_player)
+       elsif input == "list"
+        list_players
+       elsif input == "exit"
+          goodbye
+      else 
+       puts "invalid command, type list or exit."
+      end  
+    end 
+        # puts <<~HEREDOC
+        #   Player: #{the_player.name} 
+        #   Position: #{the_player.position} 
+        #   Team: #{the_player.team}
+        #   PointsPerGame: #{the_player.avg_points}  
+        #   ShootingPercentage: #{the_player.field_percentage}%
+        #   AssistsPerGame: #{the_player.assists} 
+        #
     end
 
   def goodbye
