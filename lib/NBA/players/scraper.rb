@@ -5,10 +5,10 @@
   end 
   
    def self.scrape_players
-     @player = self.scrape_nba
-     @players = []
-     @players << player
-     @players
+     player = self.scrape_nba
+     players = []
+     players << player
+     players
    end 
 
    def self.scrape_nba
@@ -28,20 +28,20 @@
      url_array = doc.css("td.Table2__td a")[0..49].map{|player_name| player_name.attribute("href").value}
 
      names_array.map.with_index {|name, i| 
-     @player = Players::Player.new(name)
-     @player.position = position_array [i]
-     @player.team = team_array [i]
-     @player.avg_points = avg_points_array [i]
-     @player.field_percentage = field_percentage_array[i]
-     @player.assists = assists_array[i]
-     @player.rebounds = rebounds_array[i]
-     @player.steals = steals_array[i]
-     @player.turnovers = turnovers_array[i]
-     @player.blocks = blocks_array[i]
-     @player.ft_percentage = ft_percentage_array[i]
-     @player.efficiency_rating = efficiency_rating_array[i]
-     @player.url = url_array[i]
-     @player.save
-     @player}
+     player = Players::Player.new(name)
+     player.position = position_array [i]
+     player.team = team_array [i]
+     player.avg_points = avg_points_array [i]
+     player.field_percentage = field_percentage_array[i]
+     player.assists = assists_array[i]
+     player.rebounds = rebounds_array[i]
+     player.steals = steals_array[i]
+     player.turnovers = turnovers_array[i]
+     player.blocks = blocks_array[i]
+     player.ft_percentage = ft_percentage_array[i]
+     player.efficiency_rating = efficiency_rating_array[i]
+     player.url = url_array[i]
+     player.save
+     player}
    end
  end 
