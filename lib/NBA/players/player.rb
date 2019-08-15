@@ -15,30 +15,13 @@ class Players::Player
     self
   end
 
-  def self.all
-    @@all
-  end
-
-  # def self.clear
-  #   all.clear
-  # end
-
   def self.scrape_players
-    #go to NBA find players
-    #extract players info
-    #instantiate each player
     player = self.scrape_nba
     players = []
     players << player
     players
   end 
-
-  def name_scrape
-    doc = Nokogiri::HTML(open("https://www.espn.com/nba/stats/player/_/table/offensive/sort/avgPoints/dir/desc"))
-    names = doc.search("td.Table2__td a").collect(&:text)[0..49]
-    names << players
-  end 
-
+  
   def self.scrape_nba
     doc = Nokogiri::HTML(open("https://www.espn.com/nba/stats/player/_/table/offensive/sort/avgPoints/dir/desc"))
     names_array = doc.css("td.Table2__td a").map(&:text)[0..49]
@@ -71,9 +54,5 @@ class Players::Player
     player.url = url_array[i]
     player.save
     player}
-  end
-
-  def self.player_names
-    @@all.collect {|player| player.name}
   end
 end  

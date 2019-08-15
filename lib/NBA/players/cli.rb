@@ -1,14 +1,14 @@
 class Players::CLI
-  attr_reader :player, :stats, :name
-  # @players = []
+  attr_reader :player, :stats, :name 
   
   def call 
     greeting 
     puts "List of NBA players"
     list_players
     stats
+    goodbye
   end 
-
+  
   def greeting 
     puts "Welcome to Top 50 stathub, press a number to learn more about a player"
   end 
@@ -19,14 +19,13 @@ class Players::CLI
     @names = doc.search("td.Table2__td a").collect(&:text)[0..49]
     @names.each.with_index(1) do |player, index|
        puts "#{index}. #{player}"
-       end 
-    # @names << @players
+    end 
    end
 
   def stats
     input = nil
     while input != "exit"
-       puts "Heres todays Top 50 players, for more stats type the player number, type list to return to list or type exit:"
+       puts "Welcome to todays Top 50 NBA players. For more stats type the player number, type list to return or type exit:"
        input = gets.strip.downcase
         the_player = Players::Player.scrape_nba[input.to_i-1]
         puts <<~HEREDOC
