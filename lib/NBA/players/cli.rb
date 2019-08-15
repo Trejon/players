@@ -6,7 +6,6 @@ class Players::CLI
     puts "List of NBA players"
     list_players
     stats
-    goodbye
   end 
   
   def greeting 
@@ -31,8 +30,8 @@ class Players::CLI
         puts <<~HEREDOC
           Player: #{the_player.name} 
           Position: #{the_player.position} 
-          PointsPerGame: #{the_player.avg_points} 
-          Team: #{the_player.team} 
+          Team: #{the_player.team}
+          PointsPerGame: #{the_player.avg_points}  
           ShootingPercentage: #{the_player.field_percentage}%
           AssistsPerGame: #{the_player.assists} 
           ReboundsPerGame: #{the_player.rebounds}
@@ -50,13 +49,13 @@ class Players::CLI
                      elsif input == "exit"
                         goodbye
                     else 
-                     puts "invalid command, type list or exit"
+                     puts "invalid command, type list or exit."
             end  
         end 
     end
 
   def goodbye
-    puts "Thanks for visiting, stay tuned"
+    puts "Thanks for visiting, stay tuned for updates."
   end 
 end 
 
