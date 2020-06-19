@@ -1,14 +1,7 @@
 class Players::Player
   attr_accessor :name, :position, :avg_points, :team, :field_percentage, :assists, :rebounds, :steals, :turnovers, :blocks, :ft_percentage, :efficiency_rating, :url, :player
-
-   @@all = []
-
-  # def initialize
-  #   @@all << self
-  #   @name = name
-  #   @team = team
-  #   @position = position
-  # end
+  
+  @@all = []
 
   def self.all
     @@all

@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Press corresponding number to each player to find out more info. Press list to return to list or press exit.
+TODO: Run the application by typing ./bin/players after that it'll run in the terminal. Press corresponding number for each player to find out more info. Press list to return to list or press exit.
 
 ## Development
 
